@@ -1,0 +1,58 @@
+body {
+  align-items: center;
+}
+
+#book-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  justify-content: center;
+  grid-gap: 20px;
+  margin: 20px;
+}
+
+
+.display-area {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.book-card {
+  display: flex;
+  justify-content: center;
+  width: 300px;
+  min-height: 200px;
+  border: 1px solid #ccc;
+  background: rgba(138, 138, 138, 0.8);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.8);
+}
+
+.book-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+  border-radius: 1rem;
+  background-color: aliceblue;
+  padding: 5px;
+}
+
+.book-author,
+.book-pages,
+.book-isRead {
+  margin-bottom: 20px;
+  text-align: center;
+  background-color: rgb(240, 240, 250);
+  padding: 5px;
+  border-radius: 1rem;
+
+}
+
+.add-book {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
