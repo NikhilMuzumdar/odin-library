@@ -9,7 +9,5 @@ function Book(book, author, pages, read) {
 
 function addBookToLibrary() {
   // do stuff here
-  
 
 }
-
