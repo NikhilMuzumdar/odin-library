@@ -11,8 +11,33 @@
 
 <body>
     <div class="add-book">
-        WIP to add new book
-    </div>
+        <button id="add-book-button">Add Book</button>
+      </div>
+      <div id="add-book-popup" class="popup" style="display:none;">
+        <div class="form-container">
+          <form>
+            <div class="form-group">
+              <label for="book-title">Book Title:</label>
+              <input type="text" id="book-title" name="book-title" required>
+            </div>
+            <div class="form-group">
+              <label for="book-author">Book Author:</label>
+              <input type="text" id="book-author" name="book-author" required>
+            </div>
+            <div class="form-group">
+              <label for="book-pages">Book Pages:</label>
+              <input type="number" id="book-pages" name="book-pages" required>
+            </div>
+            <div class="form-group">
+              <label for="book-isRead">Read:</label>
+              <input type="checkbox" id="book-isRead" name="book-isRead">
+            </div>
+            <div class="form-group">
+              <button type="submit">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>      
     <div class="display-area">
     <div id="book-list">
         <div class="book-card" id="book-template" style="display: none;">

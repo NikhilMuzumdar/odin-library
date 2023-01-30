@@ -1,13 +1,10 @@
-let myLibrary = [];
+const myLibrary = [];
 
 function Book(title, author, pages, isRead = false) {
   this.title = title;
   this.author = author;
   this.pages = pages;
-  this.isRead = function () {
-    if (isRead) {return "Read it! 😆" }
-    return ("Did not read it! 🥹");
-  };
+  this.isRead = isRead;
 }
 
 function addBookToLibrary(someBook) {
@@ -18,13 +15,13 @@ Book.prototype.add = function () {
   addBookToLibrary(this);
 };
 
-function generateRandomBooks() {
+function generateRandomBooks(n) {
   const titles = ["The Great Gatsby", "Pride and Prejudice", "To Kill a Mockingbird", "1984", "One Hundred Years of Solitude", "The Catcher in the Rye", "Moby-Dick", "The Odyssey", "The Iliad", "The Divine Comedy"];
   const authors = ["F. Scott Fitzgerald", "Jane Austen", "Harper Lee", "George Orwell", "Gabriel García Márquez", "J.D. Salinger", "Herman Melville", "Homer", "Homer", "Dante Alighieri"];
   const randomPages = [218, 279, 281, 328, 417, 277, 704, 325, 342, 100];
   const Read = [true, false, true, false, true, false, true, false, true, false];
 
-  for (let i = 0; i < 10; i += 1) {
+  for (let i = 0; i < n; i += 1) {
     const title = titles[Math.floor(Math.random() * titles.length)];
     const author = authors[Math.floor(Math.random() * authors.length)];
     const pages = randomPages[Math.floor(Math.random() * randomPages.length)];
@@ -34,18 +31,42 @@ function generateRandomBooks() {
   }
 }
 
-generateRandomBooks();
+generateRandomBooks(2);
 
-// Website Rendering
-window.onload = function () {
+// Book cards rendering on webpage
+function DisplayCard(book) {
+  const bookTemplate = document.querySelector("#book-template").cloneNode(true);
   const body = document.querySelector("#book-list");
-  myLibrary.forEach((book) => {
-    const bookTemplate = document.querySelector("#book-template").cloneNode(true);
-    bookTemplate.querySelector(".book-title").innerText = book.title;
-    bookTemplate.querySelector(".book-author").innerText = book.author;
-    bookTemplate.querySelector(".book-pages").innerText = book.pages + ' pages';
-    bookTemplate.querySelector(".book-isRead").innerText = book.isRead();
-    bookTemplate.style.display = "block";
-    body.appendChild(bookTemplate);
+  bookTemplate.querySelector(".book-title").innerText = book.title;
+  bookTemplate.querySelector(".book-author").innerText = book.author;
+  bookTemplate.querySelector(".book-pages").innerText = `${book.pages} pages`;
+  bookTemplate.querySelector(".book-isRead").innerText = book.isRead ? "Read it! 😆" : "Did not read it! 🥹";
+  bookTemplate.style.display = "block";
+  body.appendChild(bookTemplate);
+}
+
+window.onload = function() {
+  myLibrary.forEach((bookInArray) => {
+    DisplayCard(bookInArray);
   });
 };
+
+// Add book popup
+const addBookButton = document.getElementById("add-book-button");
+const addBookPopup = document.getElementById("add-book-popup");
+const bookForm = document.querySelector("form");
+
+addBookButton.addEventListener("click", () => {
+  addBookPopup.style.display = "block";
+});
+
+bookForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const newBook = new Book();
+  newBook.title = bookForm["book-title"].value,
+  newBook.author = bookForm["book-author"].value,
+  newBook.pages = Number(bookForm["book-pages"].value),
+  newBook.isRead = bookForm["book-isRead"].checked,
+  addBookPopup.style.display = "none";
+  DisplayCard(newBook);
+});
