@@ -31,9 +31,9 @@ function generateRandomBooks(n) {
   }
 }
 
-generateRandomBooks(5);
+generateRandomBooks(3);
 
-// Book cards rendering on webpage
+// Render books as cards on webpage
 function DisplayCard(book) {
   const bookTemplate = document.querySelector("#book-template").cloneNode(true);
   const body = document.querySelector("#book-list");
@@ -66,11 +66,12 @@ addBookButton.addEventListener("click", () => {
 bookForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const newBook = new Book();
+  // eslint-disable-next-line no-unused-expressions
   newBook.title = bookForm["book-title"].value,
-    newBook.author = bookForm["book-author"].value,
-    newBook.pages = Number(bookForm["book-pages"].value),
-    newBook.isRead = bookForm["book-isRead"].checked,
-    addBookPopup.style.display = "none";
+  newBook.author = bookForm["book-author"].value,
+  newBook.pages = Number(bookForm["book-pages"].value),
+  newBook.isRead = bookForm["book-isRead"].checked,
+  addBookPopup.style.display = "none";
   DisplayCard(newBook);
 });
 
@@ -80,5 +81,3 @@ button.addEventListener("click", (e) => {
   e.preventDefault();
   document.getElementById("add-book-popup").style.display = "none";
 });
-
-// Delete book popup

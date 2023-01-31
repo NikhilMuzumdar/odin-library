@@ -21,10 +21,6 @@
   border: solid black 1.5px;
 }
 
-.book-card.read-it {
-  background-color: rgba(4, 65, 29, 0.637)
-}
-
 .info-text  {
   text-shadow: none;
   text-align: center;
@@ -44,6 +40,9 @@
   border-radius: 1rem;
 }
 
+.read-it .book-isRead {
+  background-color: rgb(218, 246, 176);
+}
 
 .add-book {
   display: flex;
@@ -51,32 +50,24 @@
   align-items: center;
 }
 
-.popup {
-  display: flex;
-  flex-direction: column;
-}
 
 .form-container {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  padding: 10px;
-  max-width: 10rem;
+  display: flex;
+  flex-direction: column;
+  max-width: 15rem;
   padding: 2rem;
   margin: auto;
-  background-color: rgb(181, 179, 179);
+  background-color: rgba(255, 255, 255, 0.5);
   border-radius: 1rem;
-  border: solid black 1.5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border: none;
 }
 
-.form-label {
-  text-align: right;
-  font-weight: bold;
+.form-group label,
+.form-group input {
+  display: flex;
 }
 
-.form-input {
-  text-align: center;
-  width: 90%;
-}
 
 button {
   background-color: paleturquoise;
@@ -94,11 +85,15 @@ button {
 }
 
 .delete-book,
+.mark-read,
 .form-group button {
   background-color: green;
   padding: 5px 5px;
   color: white;
   margin: 0;
+  min-width: 7rem;
+  border: solid black 1.5px;
+  
 }
 
 .actions {
@@ -107,7 +102,18 @@ button {
 }
 
 .delete-book {
-  background-color: rgb(244, 67, 67);
+  background-color: rgba(241, 77, 77, 0.954);
+}
+
+.del-btn-container {
+  display: flex;
+  justify-content: space-evenly;
+
+
+}
+
+.mark-read {
+  background-color: rgba(75, 110, 14, 0.954);
 }
 
 
