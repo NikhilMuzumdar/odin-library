@@ -2,53 +2,70 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Library</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <title>Library</title>
 </head>
 
 <body>
-    <div class="add-book">
-        <button id="add-book-button">Add Book</button>
-      </div>
-      <div id="add-book-popup" class="popup" style="display:none;">
-        <div class="form-container">
-          <form>
-            <div class="form-group">
-              <label for="book-title">Book Title:</label>
-              <input type="text" id="book-title" name="book-title" required>
-            </div>
-            <div class="form-group">
-              <label for="book-author">Book Author:</label>
-              <input type="text" id="book-author" name="book-author" required>
-            </div>
-            <div class="form-group">
-              <label for="book-pages">Book Pages:</label>
-              <input type="number" id="book-pages" name="book-pages" required>
-            </div>
-            <div class="form-group">
-              <label for="book-isRead">Read:</label>
-              <input type="checkbox" id="book-isRead" name="book-isRead">
-            </div>
-            <div class="form-group">
-              <button type="submit">Save</button>
-            </div>
-          </form>
+  <div class="add-book">
+    <button id="add-book-button" class="btn btn-primary btn-sm d-none d-sm-block">Add Book</button>
+  </div>
+  <div id="add-book-popup" class="popup" style="display:none;">
+    <div class="form-container">
+      <form>
+        <div class="form-group">
+          <label for="book-title">Book Title:</label>
+          <input type="text" id="book-title" name="book-title" required>
         </div>
-      </div>      
-    <div class="display-area">
-    <div id="book-list">
-        <div class="book-card" id="book-template" style="display: none;">
-            <h3 class="book-title"></h3>
-            <p class="book-author"></p>
-            <p class="book-pages"></p>
-            <p class="book-isRead"></p>
+        <div class="form-group">
+          <label for="book-author">Book Author:</label>
+          <input type="text" id="book-author" name="book-author" required>
         </div>
+        <div class="form-group">
+          <label for="book-pages">Book Pages:</label>
+          <input type="number" id="book-pages" name="book-pages" required>
+        </div>
+        <div class="form-group">
+          <label for="book-isRead">Read:</label>
+          <input type="checkbox" id="book-isRead" name="book-isRead">
+        </div>
+        <div class="form-group">
+        <div class="actions">
+          <button type="submit">Save 💾</button>
+          <button type="cancel">Cancel ⍉</button>
+        </div>
+        </div>
+      </form>
     </div>
+  </div>
+  <div class="line">
+    <hr>
+  </div>
+  <div id="book-list">
+    <div class="book-card" id="book-template" style="display: none;">
+      <h3 class="book-title"></h3>
+      <p class="book-author"></p>
+      <p class="book-pages"></p>
+      <p class="book-isRead"></p>
+      <button class="btn btn-danger btn-sm delete-book">Delete 🆇  </button>
+    </div>    
     <script src="functions.js"></script>
-</div>
+  </div>
+  <div class="line">
+    <hr>
+  </div>
 </body>
 
 </html>

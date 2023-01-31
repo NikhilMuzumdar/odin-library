@@ -31,21 +31,24 @@ function generateRandomBooks(n) {
   }
 }
 
-generateRandomBooks(2);
+generateRandomBooks(5);
 
 // Book cards rendering on webpage
 function DisplayCard(book) {
   const bookTemplate = document.querySelector("#book-template").cloneNode(true);
   const body = document.querySelector("#book-list");
   bookTemplate.querySelector(".book-title").innerText = book.title;
-  bookTemplate.querySelector(".book-author").innerText = book.author;
+  bookTemplate.querySelector(".book-author").innerText = `By ${book.author}`;
   bookTemplate.querySelector(".book-pages").innerText = `${book.pages} pages`;
-  bookTemplate.querySelector(".book-isRead").innerText = book.isRead ? "Read it! 😆" : "Did not read it! 🥹";
+  bookTemplate.querySelector(".book-isRead").innerText = book.isRead ? "Read it! 🤓" : "Did not read it! 🥹";
+  if (book.isRead) {
+    bookTemplate.classList.add("read-it");
+  }
   bookTemplate.style.display = "block";
   body.appendChild(bookTemplate);
 }
 
-window.onload = function() {
+window.onload = function () {
   myLibrary.forEach((bookInArray) => {
     DisplayCard(bookInArray);
   });
@@ -64,9 +67,18 @@ bookForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const newBook = new Book();
   newBook.title = bookForm["book-title"].value,
-  newBook.author = bookForm["book-author"].value,
-  newBook.pages = Number(bookForm["book-pages"].value),
-  newBook.isRead = bookForm["book-isRead"].checked,
-  addBookPopup.style.display = "none";
+    newBook.author = bookForm["book-author"].value,
+    newBook.pages = Number(bookForm["book-pages"].value),
+    newBook.isRead = bookForm["book-isRead"].checked,
+    addBookPopup.style.display = "none";
   DisplayCard(newBook);
 });
+
+// Cancel the add book pop-up
+const button = document.querySelector("button[type='cancel']");
+button.addEventListener("click", (e) => {
+  e.preventDefault();
+  document.getElementById("add-book-popup").style.display = "none";
+});
+
+// Delete book popup
