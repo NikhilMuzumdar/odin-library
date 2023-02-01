@@ -34,19 +34,19 @@ function generateRandomBooks(n) {
 generateRandomBooks(3);
 
 // Render books as cards on webpage
-function DisplayCard(book) {
-  const bookTemplate = document.querySelector("#book-template").cloneNode(true);
-  const body = document.querySelector("#book-list");
-  bookTemplate.querySelector(".book-title").innerText = book.title;
-  bookTemplate.querySelector(".book-author").innerText = `By ${book.author}`;
-  bookTemplate.querySelector(".book-pages").innerText = `${book.pages} pages`;
-  bookTemplate.querySelector(".book-isRead").innerText = book.isRead ? "Read it! 🤓" : "Did not read it! 🥹";
-  if (book.isRead) {
-    bookTemplate.classList.add("read-it");
+  function DisplayCard(book) {
+    const bookTemplate = document.querySelector("#book-template").cloneNode(true);
+    const body = document.querySelector("#book-list");
+    bookTemplate.querySelector(".book-title").innerText = book.title;
+    bookTemplate.querySelector(".book-author").innerText = `By ${book.author}`;
+    bookTemplate.querySelector(".book-pages").innerText = `${book.pages} pages`;
+    bookTemplate.querySelector(".book-isRead").innerText = book.isRead ? "Read it! 🤓" : "Did not read it! 🥹";
+    if (book.isRead) {
+      bookTemplate.classList.add("read-it");
+    }
+    bookTemplate.style.display = "block";
+    body.appendChild(bookTemplate);
   }
-  bookTemplate.style.display = "block";
-  body.appendChild(bookTemplate);
-}
 
 window.onload = function () {
   myLibrary.forEach((bookInArray) => {
