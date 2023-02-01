@@ -1,3 +1,11 @@
+* {
+  background-color: rgba(204, 247, 247, 0.615);
+}
+
+hr {
+  font-weight: 2rem;
+}
+
 #book-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
