@@ -34,19 +34,38 @@ function generateRandomBooks(n) {
 generateRandomBooks(3);
 
 // Render books as cards on webpage
-  function DisplayCard(book) {
-    const bookTemplate = document.querySelector("#book-template").cloneNode(true);
-    const body = document.querySelector("#book-list");
-    bookTemplate.querySelector(".book-title").innerText = book.title;
-    bookTemplate.querySelector(".book-author").innerText = `By ${book.author}`;
-    bookTemplate.querySelector(".book-pages").innerText = `${book.pages} pages`;
-    bookTemplate.querySelector(".book-isRead").innerText = book.isRead ? "Read it! 🤓" : "Did not read it! 🥹";
-    if (book.isRead) {
-      bookTemplate.classList.add("read-it");
-    }
-    bookTemplate.style.display = "block";
-    body.appendChild(bookTemplate);
+function DisplayCard(book) {
+  const bookTemplate = document.querySelector("#book-template").cloneNode(true);
+  const body = document.querySelector("#book-list");
+  bookTemplate.querySelector(".book-title").innerText = book.title;
+  bookTemplate.querySelector(".book-author").innerText = `By ${book.author}`;
+  bookTemplate.querySelector(".book-pages").innerText = `${book.pages} pages`;
+  bookTemplate.querySelector(".book-isRead").innerText = book.isRead ? "Read it! 🤓" : "Did not read it! 🥹";
+
+  const buttonMarkRead = bookTemplate.querySelector(".mark-read");
+  const buttonDeleteBook = bookTemplate.querySelector(".delete-book");
+
+  // Handling the delete button click
+  buttonDeleteBook.addEventListener("click", () => {
+    bookTemplate.style.display = "none"; // Remove book from page rendering
+    myLibrary.splice(book, 1); // Delete the book from library.
+  });
+
+  // Handling the mark-read button click
+  buttonMarkRead.addEventListener("click", () => {
+    myLibrary[myLibrary.indexOf(book)].isRead = true; // Update the library
+    bookTemplate.classList.add("read-it"); // Update the background color
+    bookTemplate.querySelector(".book-isRead").innerText = "Read it! 🤓"; // Update text on page
+    buttonMarkRead.style.display = "none"; // Remove the Mark-read button
+  });
+
+  if (book.isRead) {
+    bookTemplate.classList.add("read-it"); // Update text as "Read it"
+    buttonMarkRead.style.display = "none"; // Does not render MarkRed Button on webpage
   }
+  bookTemplate.style.display = "block";
+  body.appendChild(bookTemplate);
+}
 
 window.onload = function () {
   myLibrary.forEach((bookInArray) => {
@@ -66,13 +85,13 @@ addBookButton.addEventListener("click", () => {
 bookForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const newBook = new Book();
-  // eslint-disable-next-line no-unused-expressions
-  newBook.title = bookForm["book-title"].value,
-  newBook.author = bookForm["book-author"].value,
-  newBook.pages = Number(bookForm["book-pages"].value),
-  newBook.isRead = bookForm["book-isRead"].checked,
+  newBook.title = bookForm["book-title"].value;
+  newBook.author = bookForm["book-author"].value;
+  newBook.pages = Number(bookForm["book-pages"].value);
+  newBook.isRead = bookForm["book-isRead"].checked;
   addBookPopup.style.display = "none";
-  DisplayCard(newBook);
+  myLibrary.push(newBook); // Add the new book to the library
+  DisplayCard(newBook); // Render the new book on the web-page
 });
 
 // Cancel the add book pop-up
